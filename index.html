@@ -20,6 +20,22 @@
       margin-top: 1rem; padding: 0.5rem 1.25rem; border-radius: 999px;
       border: 1px solid currentColor; opacity: 0.7; font-size: 0.95rem;
     }
+    form.waitlist {
+      margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.5rem;
+      justify-content: center; width: 100%; max-width: 26rem;
+    }
+    form.waitlist input[type="email"] {
+      flex: 1 1 14rem; padding: 0.65rem 1rem; font: inherit;
+      border: 1px solid currentColor; border-radius: 999px;
+      background: transparent; color: inherit;
+    }
+    form.waitlist button {
+      padding: 0.65rem 1.25rem; font: inherit; font-weight: 600;
+      border: 1px solid currentColor; border-radius: 999px;
+      background: currentColor; cursor: pointer;
+    }
+    form.waitlist button span { color: Canvas; }
+    p.thanks { margin-top: 1.25rem; font-weight: 600; }
     footer { margin-top: 3rem; font-size: 0.85rem; opacity: 0.6; }
     footer a { color: inherit; }
   </style>
@@ -29,6 +45,22 @@
   <p class="tag">Track every match. Count every swing. Your pickleball
     record, straight from your Apple Watch — and private to your device.</p>
   <div class="soon">Coming soon to the App Store</div>
+  <form class="waitlist" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY_PLACEHOLDER">
+    <input type="hidden" name="subject" value="PickleRecord waitlist signup">
+    <input type="hidden" name="redirect" value="https://picklerecord.app/?joined=1">
+    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+    <input type="email" name="email" required placeholder="you@example.com"
+      aria-label="Email address">
+    <button type="submit"><span>Join the waitlist</span></button>
+  </form>
+  <p class="thanks" hidden>You're on the list — we'll email you at launch. 🎉</p>
+  <script>
+    if (new URLSearchParams(location.search).has('joined')) {
+      document.querySelector('form.waitlist').hidden = true;
+      document.querySelector('p.thanks').hidden = false;
+    }
+  </script>
   <footer>
     <a href="/privacy/">Privacy Policy</a> &middot;
     <a href="mailto:support@tjnai.ai">Contact</a> &middot;

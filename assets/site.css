@@ -328,3 +328,29 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
              color:color-mix(in srgb, var(--ink) 70%, var(--paper)); }
 .limits li::before { content:""; position:absolute; left:0; top:.62em; width:12px;
                      height:2px; background:var(--court); }
+
+/* ---------- pricing ---------- */
+.price-grid { display:grid; grid-template-columns:.85fr 1.15fr;
+              gap:clamp(28px,5vw,52px); align-items:center; }
+@media (max-width:860px) { .price-grid { grid-template-columns:1fr; } }
+.plans { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+@media (max-width:620px) { .plans { grid-template-columns:1fr; } }
+.plan { border:1px solid var(--rule); border-radius:16px; padding:22px 24px;
+        background:#fff; }
+.plan h3 { font-family:var(--num); font-weight:800; font-size:1.25rem;
+           letter-spacing:-.01em; margin-bottom:4px; }
+.plan .price { font-size:.92rem; font-weight:600; color:var(--court-dk);
+               margin-bottom:14px; }
+.plan ul { list-style:none; }
+.plan li { font-size:.92rem; line-height:1.85; padding-left:20px; position:relative;
+           color:color-mix(in srgb, var(--ink) 68%, var(--paper)); }
+.plan li::before { content:"✓"; position:absolute; left:0; color:var(--court);
+                   font-weight:800; }
+.plan-pro { background:var(--ink); border-color:var(--lime); }
+.plan-pro h3 { color:var(--lime); }
+.plan-pro .price { color:#fff; }
+.plan-pro li { color:var(--mist); }
+.plan-pro li::before { color:var(--lime); }
+.plan-note { margin-top:16px; padding-top:14px;
+             border-top:1px solid color-mix(in srgb,#fff 15%,transparent);
+             font-size:.84rem; color:var(--mist); line-height:1.6; }

@@ -234,3 +234,40 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
   .steps { grid-template-columns:1fr; align-items:stretch; gap:28px; }
   .step-watch .frame-watch { width:44%; }
 }
+
+/* ---------- sticky watch section ---------- */
+.watch-sec { background:var(--ink); color:#fff; }
+.watch-sec h2 { color:#fff; }
+.watch-sec h2 em { color:var(--lime); }
+.watch-sec .lede { color:var(--mist); }
+.watch-sec .eyebrow { color:var(--lime); }
+.watch-sec .eyebrow::before { background:var(--lime); }
+.sticky-wrap { display:grid; grid-template-columns:1fr 1fr;
+               gap:clamp(28px,5vw,56px); align-items:start; margin-top:34px; }
+@media (max-width:860px) { .sticky-wrap { grid-template-columns:1fr; gap:22px; } }
+.sticky-device { position:sticky; top:96px; align-self:start;
+                 display:flex; justify-content:center; gap:18px; align-items:center; }
+@media (max-width:860px) { .sticky-device { position:relative; top:0; } }
+.sticky-device .frame-watch { width:190px; }
+.sticky-device .frame-phone { width:150px; opacity:.85; }
+.sticky-device img { transition:opacity .3s ease; }
+.sticky-device .sync { color:var(--lime); font-size:1.5rem; }
+.beats { display:flex; flex-direction:column; gap:14px; }
+.beat { padding:24px 26px; border-radius:16px; min-height:32vh;
+        display:flex; flex-direction:column; justify-content:center;
+        border:1px solid color-mix(in srgb, #fff 12%, transparent);
+        transition:background .4s ease, border-color .4s ease; }
+.beat h3 { font-family:var(--sans); font-size:1.12rem; font-weight:700;
+           color:color-mix(in srgb, #fff 58%, var(--ink)); margin-bottom:8px;
+           letter-spacing:-.01em; line-height:1.3; }
+.beat p { font-size:.96rem; color:color-mix(in srgb, var(--mist) 74%, var(--ink)); }
+.beat.on { background:color-mix(in srgb, var(--lime) 8%, transparent);
+           border-color:color-mix(in srgb, var(--lime) 46%, transparent); }
+.beat.on h3 { color:#fff; }
+.beat.on p { color:var(--mist); }
+@media (prefers-reduced-motion: reduce) {
+  .sticky-device { position:relative; top:0; }
+  .beat { min-height:0; }
+  .beat h3 { color:#fff; }
+  .beat p { color:var(--mist); }
+}

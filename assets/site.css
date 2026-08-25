@@ -252,7 +252,18 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
 .sticky-device .frame-phone { width:150px; opacity:.85; }
 .sticky-device .sync { color:var(--lime); font-size:1.5rem; }
 .beats { display:flex; flex-direction:column; gap:14px; }
-.beat { padding:24px 26px; border-radius:16px; min-height:32vh;
+/* Fixed px, not vh: this section's pacing must not depend on viewport
+   height. The IntersectionObserver in site.js uses rootMargin:"-40% 0px
+   -50% 0px" to activate one beat at a time as it crosses a narrow band
+   near the viewport's vertical centre, which only works if each beat is
+   tall enough that consecutive beats don't both sit in that band at once.
+   32vh previously gave ~270-330px across the three widths this site is
+   rendered at (844/1024/900px-tall viewports); 300px sits in the middle
+   of that range, preserving the same scroll pacing at a single fixed
+   value instead of one that moves with viewport height. See tools/shots.sh
+   and tools/check.py's viewport-height-unit check for why vh is banned
+   here specifically. */
+.beat { padding:24px 26px; border-radius:16px; min-height:300px;
         display:flex; flex-direction:column; justify-content:center;
         border:1px solid color-mix(in srgb, #fff 12%, transparent);
         transition:background .4s ease, border-color .4s ease; }

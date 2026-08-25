@@ -170,7 +170,15 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
                      transform:rotate(6deg); border-radius:14px;
                      box-shadow:var(--shadow-lg); }
 @media (max-width:960px) {
-  .hero-stage { min-height:430px; }
+  /* min-height:430px was a fixed guess that didn't track real content: the
+     phone frame is 40% of the stage's width, and at the images' true
+     660:1434 intrinsic ratio that renders far taller than 430px through most
+     of this range, overflowing the stage. aspect-ratio (275/239 = 0.4 *
+     1434/660, i.e. frame-phone's width share times the screenshot's own
+     height/width ratio) makes the stage's height a function of its own
+     width instead of a guessed constant, so it always has room for the
+     tallest element regardless of viewport width. */
+  .hero-stage { min-height:0; aspect-ratio:275/239; }
   .hero-stage .frame-phone { left:26%; width:40%; }
   .hero-stage .frame-watch { left:2%; width:21%; }
   .hero-stage .pcard { right:0; width:30%; }

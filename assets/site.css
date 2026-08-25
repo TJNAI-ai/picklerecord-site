@@ -270,3 +270,28 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
   .beat h3 { color:#fff; }
   .beat p { color:var(--mist); }
 }
+
+/* ---------- season ---------- */
+.season-grid { display:grid; grid-template-columns:1fr 1fr;
+               gap:clamp(28px,5vw,56px); align-items:center; }
+@media (max-width:860px) { .season-grid { grid-template-columns:1fr; } }
+.season-art { display:flex; gap:20px; align-items:center; }
+.season-art .frame { width:44%; flex:none; }
+/* Same trap as .hero-stage img / .step img above: the img width/height HTML
+   attributes become literal CSS height hints. Constraining width alone
+   (via .frame's 44% + the global img{max-width:100%}) leaves height pinned
+   to the unscaled attribute value instead of the intrinsic ratio, squishing
+   the screenshot horizontally. height:auto forces the ratio-correct scale. */
+.season-art .frame img { height:auto; }
+.trend-card { flex:1; }
+.trend-card .hd { font-size:.74rem; font-weight:700; letter-spacing:.13em;
+                  text-transform:uppercase; color:var(--ink-2);
+                  margin-bottom:10px; }
+.trend-card .ft { font-size:.78rem; margin-top:8px; color:var(--ink-2); }
+.stat-row { display:flex; gap:26px; flex-wrap:wrap; margin-top:24px;
+            padding-top:20px; border-top:1px solid var(--rule); }
+.stat-row div b { display:block; font-family:var(--num); font-weight:800;
+                  font-size:1.7rem; line-height:1; color:var(--court-dk);
+                  font-variant-numeric:tabular-nums; }
+.stat-row div span { font-size:.74rem; font-weight:600; letter-spacing:.11em;
+                     text-transform:uppercase; color:var(--ink-2); }

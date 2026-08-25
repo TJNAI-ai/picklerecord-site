@@ -354,3 +354,38 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
 .plan-note { margin-top:16px; padding-top:14px;
              border-top:1px solid color-mix(in srgb,#fff 15%,transparent);
              font-size:.84rem; color:var(--mist); line-height:1.6; }
+
+/* ---------- privacy ---------- */
+.privacy-sec { background:var(--ink); color:#fff; text-align:center; }
+.privacy-sec h2 { color:#fff; } .privacy-sec h2 em { color:var(--lime); }
+.privacy-sec .eyebrow { color:var(--lime); justify-content:center; }
+.privacy-sec .eyebrow::before { background:var(--lime); }
+.privacy-sec .lede { color:var(--mist); margin:0 auto; }
+.pill-row { display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+            margin-top:28px; }
+.pill-row span { border:1px solid color-mix(in srgb,#fff 18%,transparent);
+                 border-radius:999px; padding:9px 16px; font-size:.86rem;
+                 font-weight:600; color:var(--mist); }
+.pill-row span.hi { background:var(--lime); color:var(--ink); border-color:var(--lime); }
+
+/* ---------- compare teaser ---------- */
+.compare-teaser { display:grid; grid-template-columns:1fr 1.1fr auto;
+                  gap:clamp(20px,4vw,40px); align-items:center; }
+@media (max-width:860px) { .compare-teaser { grid-template-columns:1fr; } }
+.vs { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:520px) { .vs { grid-template-columns:1fr; } }
+.vs > div { border:1px solid var(--rule); border-radius:14px; padding:16px 18px;
+            background:#fff; }
+.vs > div.mine { border:2px solid var(--court);
+                 background:color-mix(in srgb, var(--court) 5%, #fff); }
+/* R18: the brief's ad-hoc color-mix(in srgb, var(--ink) 46%, var(--paper))
+   computes to ~3.16:1 against --paper, below WCAG AA's 4.5:1 text floor with
+   no exemption available for this label size/weight. --ink-2 (60% ink,
+   ~4.99:1, defined once in the palette block above) is the floor for any
+   ink/paper text mix site-wide -- never write an ad-hoc mix below 60% here. */
+.vs h3 { font-family:var(--sans); font-size:.76rem; font-weight:700;
+         letter-spacing:.13em; text-transform:uppercase; margin-bottom:8px;
+         color:var(--ink-2); }
+.vs .mine h3 { color:var(--court-dk); }
+.vs p { font-size:.92rem; line-height:1.6;
+        color:color-mix(in srgb, var(--ink) 70%, var(--paper)); }

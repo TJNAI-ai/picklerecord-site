@@ -408,3 +408,26 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
 .cta-final { position:relative; overflow:hidden; text-align:center; }
 .cta-final .wrap { position:relative; z-index:5; }
 .cta-final .btn { margin-top:24px; }
+
+/* ---------- long-form prose (privacy policy) ----------
+   Scoped under .prose rather than bare `main p` / `main h2` selectors:
+   every page on the site shares one stylesheet, so an unscoped rule would
+   reach the other four pages too. `.prose` is applied only to the policy's
+   wrapper div, so it cannot leak. */
+.prose h1 { font-size:clamp(2rem,1.6rem + 1.6vw,2.75rem); margin-bottom:6px; }
+.prose .updated { color:var(--ink-2); font-size:.92rem; margin-bottom:28px; }
+.prose .tldr {
+  border-left:3px solid var(--court-dk); padding:16px 20px; margin:28px 0;
+  background:color-mix(in srgb, var(--court) 8%, var(--paper));
+  border-radius:0 12px 12px 0;
+}
+.prose .tldr strong { color:var(--court-dk); }
+.prose h2 { margin-top:40px; }
+.prose h2 + p, .prose p + p { margin-top:14px; }
+.prose p {
+  font-size:1rem; line-height:1.75;
+  color:color-mix(in srgb, var(--ink) 78%, var(--paper));
+}
+.prose ul { margin:14px 0 14px 22px; }
+.prose li { margin-bottom:6px; }
+.prose a { border-bottom:2px solid var(--lime); }

@@ -41,3 +41,15 @@
   }, { rootMargin: '-40% 0px -50% 0px' });
   beats.forEach(function (b) { io.observe(b); });
 })();
+
+// 2. Draw the swing trace when it scrolls into view.
+(function () {
+  var path = document.querySelector('.trace-path');
+  if (!path || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('draw'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.4 });
+  io.observe(path);
+})();

@@ -306,3 +306,25 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
                   font-variant-numeric:tabular-nums; }
 .stat-row div span { font-size:.74rem; font-weight:600; letter-spacing:.11em;
                      text-transform:uppercase; color:var(--ink-2); }
+
+/* ---------- swings ---------- */
+.swing-grid { display:grid; grid-template-columns:1.1fr .9fr;
+              gap:clamp(28px,5vw,56px); align-items:center; }
+@media (max-width:860px) { .swing-grid { grid-template-columns:1fr; } }
+.trace-card .hd { display:flex; justify-content:space-between; align-items:baseline;
+                  margin-bottom:10px; }
+.trace-card .hd span { font-size:.74rem; font-weight:700; letter-spacing:.13em;
+                       text-transform:uppercase; color:var(--ink-2); }
+.trace-card .hd b { font-family:var(--num); font-weight:800; font-size:1.5rem;
+                    font-variant-numeric:tabular-nums; }
+.trace-card .ft { font-family:var(--mono); font-size:.75rem; margin-top:10px;
+                  color:var(--ink-2); }
+.trace-path { stroke:var(--court); stroke-dasharray:1400; stroke-dashoffset:1400; }
+.trace-path.draw { animation:trace-draw 2.1s ease-out forwards; }
+@keyframes trace-draw { to { stroke-dashoffset:0; } }
+.limits { margin-top:22px; }
+.limits li { list-style:none; font-size:.94rem; line-height:1.65; padding-left:24px;
+             position:relative; margin-bottom:8px;
+             color:color-mix(in srgb, var(--ink) 70%, var(--paper)); }
+.limits li::before { content:""; position:absolute; left:0; top:.62em; width:12px;
+                     height:2px; background:var(--court); }

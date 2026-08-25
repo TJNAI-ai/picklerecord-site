@@ -31,8 +31,12 @@ ALLOWED_PALETTE = {"#D6F553", "#0B0F16", "#16202F", "#3A4657",
                    "#fff", "#000"}
 # 8/6/4/3-digit hex, longest first so e.g. #0B0F16AA isn't cut short at 6
 # and left dangling on a hex digit (which broke the old \b-anchored regex).
+# The leading (?<!&) excludes numeric character references such as
+# &#8646; or &#160; — those "#" are the start of an HTML entity, not a
+# colour, and the digits that follow happen to fall in hex-digit ranges.
+# Named entities (&mdash;, &rarr;, ...) never contain "#" and are unaffected.
 HEX_RE = re.compile(
-    r"#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})"
+    r"(?<!&)#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})"
     r"(?![0-9a-fA-F])"
 )
 

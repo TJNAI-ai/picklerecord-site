@@ -67,6 +67,41 @@ def check_palette(text, label):
             fail("palette", label, f"{bad} is not in the approved palette")
 
 
+# tools/shots.sh measures a page's rendered content height at a fixed
+# viewport width, then re-launches the browser window sized to *that
+# measured height* and captures at that size. If the page's own height
+# depends on viewport height -- e.g. `min-height:32vh`, which scales with
+# whatever window height it's rendered in -- then the measurement pass
+# (one viewport height) and the capture pass (a different viewport height,
+# namely the measured value itself) disagree about how tall the page is,
+# and the page grows in response to being resized to fit it. That loop has
+# no fixed point in general: it previously produced a capture that
+# silently truncated mid-page, with no error, because the page kept
+# growing past whatever height it had just been measured at. Viewport-
+# WIDTH units (vw) don't have this problem -- shots.sh's capture width
+# always matches its measurement width -- so only height-relative units
+# are banned here. See the shots.sh header comment for the full mechanism.
+#
+# Matched only as an actual CSS length token: a number immediately
+# followed by one of the four viewport-height units, with a non-alnum
+# boundary on each side. That keeps it from firing on a class name like
+# `.vh-100` (unit comes before the number -- no match), a word or
+# identifier that merely contains the letters "vh", or the CSS comment
+# text explaining this very rule -- comments are stripped before matching.
+CSS_COMMENT_RE = re.compile(r"/\*.*?\*/", re.S)
+VH_UNIT_RE = re.compile(r"(?<![\w.-])(-?\d*\.?\d+)(dvh|svh|lvh|vh)(?![a-zA-Z0-9])")
+STYLE_BLOCK_RE = re.compile(r"<style\b[^>]*>(.*?)</style>", re.S | re.I)
+
+
+def check_vh(css_text, label):
+    stripped = CSS_COMMENT_RE.sub(" ", css_text)
+    for m in VH_UNIT_RE.finditer(stripped):
+        fail("viewport-height-unit", label,
+             f"{m.group(0)} uses a viewport-height unit (see shots.sh: "
+             f"capture height depends on measured height, so page height "
+             f"must not depend on viewport height)")
+
+
 failures = []
 
 
@@ -261,12 +296,16 @@ def main():
             fail("reduced-motion", "assets/site.css",
                  "no prefers-reduced-motion block")
         check_palette(css, "assets/site.css")
+        check_vh(css, "assets/site.css")
 
     # --- palette (HTML pages: inline <style> blocks and style= attributes) ---
+    # --- viewport-height units (HTML pages: inline <style> blocks only) ---
     for rel in pages:
         with open(os.path.join(root, rel), encoding="utf-8") as fh:
             html = fh.read()
         check_palette(html, rel)
+        for m in STYLE_BLOCK_RE.finditer(html):
+            check_vh(m.group(1), rel)
 
     for line in failures:
         print(line)

@@ -29,6 +29,7 @@
     img.alt = ALT[key];
   }
 
+  beats[0].classList.add('on');
   if (!('IntersectionObserver' in window)) return; // static first screen is fine
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
@@ -39,5 +40,4 @@
     });
   }, { rootMargin: '-40% 0px -50% 0px' });
   beats.forEach(function (b) { io.observe(b); });
-  beats[0].classList.add('on');
 })();

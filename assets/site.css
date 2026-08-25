@@ -132,3 +132,62 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
                  border-top:1px solid color-mix(in srgb, #fff 12%, transparent);
                  font-size:.82rem; line-height:1.7;
                  color:color-mix(in srgb, var(--mist) 72%, var(--slate)); }
+
+/* ---------- hero ---------- */
+.hero { position:relative; overflow:hidden; padding:clamp(30px,4vw,56px) 0 0; }
+.hero-grid { position:relative; z-index:5; display:grid;
+             grid-template-columns:.93fr 1.07fr; gap:clamp(24px,4vw,52px);
+             align-items:center; padding-bottom:clamp(60px,7vw,96px); }
+@media (max-width:960px) { .hero-grid { grid-template-columns:1fr; gap:34px; } }
+.hero h1 { margin-bottom:18px; }
+.hero .lede { margin-bottom:24px; }
+.hero-ctas { display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+             margin-bottom:22px; }
+.hero-trust { display:flex; gap:8px 20px; flex-wrap:wrap; font-size:.85rem;
+              font-weight:600; color:var(--ink-2);
+              margin-bottom:22px; }
+.hero-trust span::before { content:"✓"; color:var(--court); font-weight:800;
+                           margin-right:6px; }
+.hero-bloom { position:absolute; border-radius:50%; filter:blur(72px);
+              z-index:1; pointer-events:none; }
+.hero-bloom.a { width:44%; aspect-ratio:1; background:var(--lime);
+                opacity:.4; left:-10%; top:-18%; }
+.hero-bloom.b { width:28%; aspect-ratio:1; background:var(--court);
+                opacity:.18; right:26%; bottom:-14%; }
+
+.hero-stage { position:relative; min-height:clamp(360px,42vw,520px); }
+/* The width/height HTML attributes on these images (kept for CLS
+   prevention) map to explicit CSS width AND height presentational hints.
+   Overriding only width here leaves the height hint in place as a literal
+   unscaled pixel value instead of scaling with the intrinsic ratio, which
+   badly distorts and overflows rotated collage images. height:auto forces
+   the ratio-correct scale. */
+.hero-stage img { height:auto; }
+.hero-stage .frame-phone { position:absolute; left:22%; top:0; width:30%; z-index:6; }
+.hero-stage .frame-watch { position:absolute; left:6%; top:42%; width:16%;
+                           z-index:8; transform:rotate(-7deg); }
+.hero-stage .pcard { position:absolute; right:4%; top:6%; width:24%; z-index:5;
+                     transform:rotate(6deg); border-radius:14px;
+                     box-shadow:var(--shadow-lg); }
+@media (max-width:960px) {
+  .hero-stage { min-height:430px; }
+  .hero-stage .frame-phone { left:26%; width:40%; }
+  .hero-stage .frame-watch { left:2%; width:21%; }
+  .hero-stage .pcard { right:0; width:30%; }
+}
+@media (max-width:560px) { .hero-stage .chip { display:none; }
+  .hero-stage .chip.keep { display:block; } }
+
+/* season strip */
+.season-strip { position:relative; z-index:6; background:var(--ink);
+                border-top:3px solid var(--lime); }
+.season-strip .wrap { display:flex; align-items:center; gap:clamp(14px,3vw,34px);
+                      flex-wrap:wrap; padding-top:16px; padding-bottom:16px; }
+.season-strip .lbl { font-size:.75rem; font-weight:700; letter-spacing:.19em;
+                     text-transform:uppercase; color:var(--lime); }
+.season-strip .it { font-size:.92rem; font-weight:600; color:var(--mist);
+                    display:flex; align-items:baseline; gap:7px; }
+.season-strip .it b { font-family:var(--num); font-weight:800; font-size:1.3rem;
+                      color:#fff; font-variant-numeric:tabular-nums; }
+.demo-note { font-size:.76rem; color:var(--ink-2);
+             margin-top:14px; }

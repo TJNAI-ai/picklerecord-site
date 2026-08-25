@@ -21,6 +21,47 @@ REQUIRED_META = ["description", "og:title", "og:description", "og:image", "og:ur
                  "twitter:card"]
 REQUIRED_PRICES = ["$2.99", "$19.99", "$39.99"]
 APPSTORE_URL = "https://apps.apple.com/app/id6792869715"
+# Exact App Store URL, not followed by a query string, extra path segment,
+# or other continuation character (a quote, whitespace, or end-of-string is fine).
+APPSTORE_RE = re.compile(re.escape(APPSTORE_URL) + r"(?![\w./?#-])")
+
+ALLOWED_PALETTE = {"#D6F553", "#0B0F16", "#16202F", "#3A4657",
+                   "#2F9E52", "#1F7A3C", "#FAFBF7", "#BAC4D2",
+                   "#0D0F12",  # device bezel, distinct from --ink
+                   "#fff", "#000"}
+# 8/6/4/3-digit hex, longest first so e.g. #0B0F16AA isn't cut short at 6
+# and left dangling on a hex digit (which broke the old \b-anchored regex).
+HEX_RE = re.compile(
+    r"#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})"
+    r"(?![0-9a-fA-F])"
+)
+
+
+def hex_rgb6(hexval):
+    """Normalize a 3/4/6/8-digit hex colour to its RRGGBB part, upper-cased.
+
+    3- and 4-digit forms are shorthand (one hex nibble per channel, plus an
+    optional alpha nibble); 8-digit forms carry a full two-digit alpha
+    channel after RRGGBB. Alpha is dropped so an approved colour with any
+    alpha value still matches, while an unapproved RGB is still caught.
+    """
+    h = hexval.lstrip("#")
+    if len(h) in (3, 4):
+        h = "".join(c * 2 for c in h[:3])
+    else:
+        h = h[:6]
+    return h.upper()
+
+
+ALLOWED_RGB6 = {hex_rgb6(c) for c in ALLOWED_PALETTE}
+
+
+def check_palette(text, label):
+    for m in HEX_RE.finditer(text):
+        bad = m.group(0)
+        if hex_rgb6(bad) not in ALLOWED_RGB6:
+            fail("palette", label, f"{bad} is not in the approved palette")
+
 
 failures = []
 
@@ -77,10 +118,16 @@ class Doc(HTMLParser):
 
 
 def visible_text(html):
-    """Strip script/style/comments so copy checks don't fire on code."""
+    """Strip script/style/comments so copy checks don't fire on code.
+
+    Collapses whitespace runs to a single space so inline markup like
+    `next <em>level</em>` (which tag-stripping turns into "next  level")
+    still matches banned two-word phrases.
+    """
     html = re.sub(r"<!--.*?-->", " ", html, flags=re.S)
     html = re.sub(r"<(script|style)\b.*?</\1>", " ", html, flags=re.S | re.I)
-    return re.sub(r"<[^>]+>", " ", html)
+    text = re.sub(r"<[^>]+>", " ", html)
+    return re.sub(r"\s+", " ", text)
 
 
 def chrome_block(html, name):
@@ -198,7 +245,7 @@ def main():
         for price in REQUIRED_PRICES:
             if price not in text:
                 fail("pricing", "index.html", f"missing {price}")
-        if APPSTORE_URL not in index_html:
+        if not APPSTORE_RE.search(index_html):
             fail("appstore", "index.html", "exact App Store URL not present")
 
     # --- reduced motion ---
@@ -209,14 +256,13 @@ def main():
         if "prefers-reduced-motion" not in css:
             fail("reduced-motion", "assets/site.css",
                  "no prefers-reduced-motion block")
-        for bad in re.findall(r"#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b", css):
-            allowed = {"#D6F553", "#0B0F16", "#16202F", "#3A4657",
-                       "#2F9E52", "#1F7A3C", "#FAFBF7", "#BAC4D2",
-                       "#0D0F12",  # device bezel, distinct from --ink
-                       "#fff", "#000"}
-            if bad.upper() not in {a.upper() for a in allowed}:
-                fail("palette", "assets/site.css",
-                     f"{bad} is not in the approved palette")
+        check_palette(css, "assets/site.css")
+
+    # --- palette (HTML pages: inline <style> blocks and style= attributes) ---
+    for rel in pages:
+        with open(os.path.join(root, rel), encoding="utf-8") as fh:
+            html = fh.read()
+        check_palette(html, rel)
 
     for line in failures:
         print(line)

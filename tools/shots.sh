@@ -17,14 +17,28 @@ DOCROOT="$(pwd)"
 SERVER_LOG="$(mktemp)"
 SERVER_PID=""
 
+CLEANED_UP=""
 cleanup() {
+  [[ -n "$CLEANED_UP" ]] && return 0
+  CLEANED_UP=1
   if [[ -n "$SERVER_PID" ]] && kill -0 "$SERVER_PID" 2>/dev/null; then
     kill "$SERVER_PID" 2>/dev/null || true
     wait "$SERVER_PID" 2>/dev/null || true
   fi
   rm -f "$SERVER_LOG"
 }
-trap cleanup EXIT INT TERM
+# A trapped signal runs its handler and then execution falls through to the
+# next statement -- it does not itself terminate the script. Without an
+# explicit exit in each signal's own trap, termination on INT/TERM/HUP would
+# depend on some later foreground command happening to return a
+# signal-derived nonzero status under `set -e`, which is not guaranteed if
+# the signal lands while curl or the PORT assignment (both exempted from
+# errexit by their `if`/`&&` guards) is the thing running. cleanup() is
+# idempotent so the EXIT trap firing after these exit calls is a no-op.
+trap cleanup EXIT
+trap 'cleanup; exit 130' INT
+trap 'cleanup; exit 143' TERM
+trap 'cleanup; exit 129' HUP
 
 # Port 0 asks the OS for a free ephemeral port, avoiding collisions with a
 # stale server or another process. -u disables Python's stdout buffering so

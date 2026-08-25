@@ -199,3 +199,38 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
                       color:#fff; font-variant-numeric:tabular-nums; }
 .demo-note { font-size:.76rem; color:var(--ink-2);
              margin-top:14px; }
+
+/* ---------- how it works ---------- */
+.how-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,60px);
+            align-items:center; }
+@media (max-width:860px) { .how-grid { grid-template-columns:1fr; } }
+/* The middle step is a watch screenshot (416:496, near-square) between two
+   phone screenshots (660:1434, more than twice as tall). Equal 1fr columns
+   at full width would either distort the watch or leave it looking like a
+   squat leftover with its caption floating at a different height than the
+   phones' captions. align-items:end anchors every step to the row's bottom
+   regardless of its own frame height, so all three captions land on the
+   same line; .step-watch then caps the watch frame at a deliberate
+   fraction of its column and centers it instead of stretching it edge to
+   edge like the phones. */
+.steps { display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+         align-items:end; }
+/* height:auto is required alongside width:100%: the img width/height HTML
+   attributes become presentational height hints the browser applies
+   literally unless a competing CSS height rule overrides them (see the
+   .hero-stage img comment above for the same trap) -- without it these
+   screenshots render squeezed and stretched instead of scaled. */
+.step img { width:100%; height:auto; }
+.step-watch { text-align:center; }
+.step-watch .frame-watch { width:58%; }
+.step .cap { margin-top:12px; font-size:.9rem; font-weight:600; line-height:1.45; }
+.step .cap b { display:block; font-family:var(--num); font-weight:800;
+               color:var(--court-dk); font-size:.78rem; letter-spacing:.12em;
+               text-transform:uppercase; margin-bottom:3px; }
+/* Below ~600px the three-across row leaves each phone screenshot under
+   110px wide -- a thumbnail, not a legible screen. Stack instead so every
+   step gets the section's full width. */
+@media (max-width:600px) {
+  .steps { grid-template-columns:1fr; align-items:stretch; gap:28px; }
+  .step-watch .frame-watch { width:44%; }
+}

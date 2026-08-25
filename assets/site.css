@@ -389,3 +389,22 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
 .vs .mine h3 { color:var(--court-dk); }
 .vs p { font-size:.92rem; line-height:1.6;
         color:color-mix(in srgb, var(--ink) 70%, var(--paper)); }
+
+/* ---------- faq ---------- */
+.faq-list { display:grid; grid-template-columns:1fr 1fr; gap:0 clamp(28px,5vw,52px); }
+@media (max-width:760px) { .faq-list { grid-template-columns:1fr; } }
+.faq-list details { border-bottom:1px solid var(--rule); padding:18px 0; }
+.faq-list summary { font-weight:600; font-size:1.02rem; cursor:pointer;
+                    list-style:none; display:flex; justify-content:space-between;
+                    gap:16px; align-items:baseline; }
+.faq-list summary::-webkit-details-marker { display:none; }
+.faq-list summary::after { content:"+"; color:var(--court-dk); font-weight:700;
+                           font-size:1.2rem; flex:none; }
+.faq-list details[open] summary::after { content:"–"; }
+.faq-list p { margin-top:10px; font-size:.94rem; line-height:1.7;
+              color:color-mix(in srgb, var(--ink) 70%, var(--paper)); }
+
+/* ---------- final cta ---------- */
+.cta-final { position:relative; overflow:hidden; text-align:center; }
+.cta-final .wrap { position:relative; z-index:5; }
+.cta-final .btn { margin-top:24px; }

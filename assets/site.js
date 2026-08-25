@@ -53,3 +53,23 @@
   }, { threshold: 0.4 });
   io.observe(path);
 })();
+
+// 3. Reveal-on-scroll: fade + rise each section's content in once, then stop
+// watching it. Guarded to no-op on pages with no .reveal elements, and to
+// reveal everything immediately if IntersectionObserver is unavailable --
+// .reveal starts at opacity:0 in CSS, so without the observer running the
+// content would otherwise stay invisible forever.
+(function () {
+  var els = [].slice.call(document.querySelectorAll('.reveal'));
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function (el) { io.observe(el); });
+})();

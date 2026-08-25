@@ -23,6 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
@@ -109,7 +110,7 @@
 </section>
 
 <section class="section" id="how">
-  <div class="wrap how-grid">
+  <div class="wrap how-grid reveal">
     <div>
       <p class="eyebrow">How it works</p>
       <h2>Start a session. Tap <em>Win</em>. That's the whole thing.</h2>
@@ -144,7 +145,7 @@
 </section>
 
 <section class="section watch-sec" id="watch">
-  <div class="wrap">
+  <div class="wrap reveal">
     <p class="eyebrow">Apple Watch</p>
     <h2>The phone stays in the bag.<br>The record still gets <em>kept</em>.</h2>
     <p class="lede">A real watchOS app, not a notification mirror. Start a session,
@@ -190,7 +191,7 @@
 </section>
 
 <section class="section" id="season">
-  <div class="wrap season-grid">
+  <div class="wrap season-grid reveal">
     <div>
       <p class="eyebrow">Six weeks in</p>
       <h2>Every match you log makes the next number <em>truer</em>.</h2>
@@ -225,7 +226,7 @@
 </section>
 
 <section class="section" id="swings">
-  <div class="wrap swing-grid">
+  <div class="wrap swing-grid reveal">
     <div>
       <p class="eyebrow">CoreMotion, on the watch</p>
       <h2>We count your swings. Here's what it <em>can't</em> do.</h2>
@@ -258,7 +259,7 @@
 </section>
 
 <section class="section" id="pricing">
-  <div class="wrap price-grid">
+  <div class="wrap price-grid reveal">
     <div>
       <p class="eyebrow">Pricing</p>
       <h2>The record is free.<br>The <em>coaching</em> is Pro.</h2>
@@ -302,7 +303,7 @@
 </section>
 
 <section class="section privacy-sec" id="privacy">
-  <div class="wrap">
+  <div class="wrap reveal">
     <p class="eyebrow">Private by design</p>
     <h2>No account. No ads. No server.<br>Nothing to <em>leak</em>.</h2>
     <p class="lede">There is no sign-up, because there is nowhere to sign up to.
@@ -323,7 +324,7 @@
 </section>
 
 <section class="section" id="compare">
-  <div class="wrap compare-teaser">
+  <div class="wrap compare-teaser reveal">
     <div>
       <p class="eyebrow">Choosing an app</p>
       <h2>Most pickleball apps track the rally. This one tracks the <em>season</em>.</h2>
@@ -341,6 +342,59 @@
       </div>
     </div>
     <a class="btn btn-text" href="/compare/">Full comparison</a>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap reveal">
+    <p class="eyebrow">Questions</p>
+    <h2>The things people ask <em>first</em>.</h2>
+    <div class="faq-list" style="margin-top:28px">
+      <details><summary>Does it work without an Apple Watch?</summary>
+        <p>Yes. The iPhone app is complete on its own &mdash; sessions, games,
+          scores, stats and history all work with no watch at all. The watch adds
+          wrist scoring and swing counting.</p></details>
+      <details><summary>Does it call the score out during play?</summary>
+        <p>No, and that is deliberate. PickleRecord is not a live scorekeeper &mdash;
+          it does not track serving rotation or announce 5-3-2. You log the result
+          after each game and it builds your record from there. If you want spoken
+          scoring mid-rally, you want a scorekeeper app instead.</p></details>
+      <details><summary>How accurate is the swing count?</summary>
+        <p>It is an honest estimate, not a precise count. Swings are read from wrist
+          motion on the watch, and ball handling or arm movement between points can
+          register as swings, so it runs slightly high. It is a good measure of how
+          much you played, not of how many times you struck the ball.</p></details>
+      <details><summary>Is my history capped on the free tier?</summary>
+        <p>No. Unlimited match history is free forever. Pro adds analytics &mdash;
+          trends, splits, records &mdash; on top of data you always keep.</p></details>
+      <details><summary>Can I get my data out?</summary>
+        <p>Yes, as a Pro feature. Export your full game history as CSV from
+          Settings. Free or Pro, your data always lives on your device and is
+          never locked in &mdash; Pro just adds the one-tap export on top.</p></details>
+      <details><summary>Does it need an account or an internet connection?</summary>
+        <p>Neither. There is no sign-in and no server. Everything is stored on your
+          own devices and the app works fully offline &mdash; which matters on courts
+          with bad reception.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-final">
+  <svg class="court-bg" viewBox="0 0 200 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g transform="translate(100 50) rotate(-9) scale(2.4) translate(-22 -10)">
+      <rect x="15" y="0" width="14" height="20" fill="#D6F553" fill-opacity=".18"/>
+      <g fill="none" stroke="#2F9E52" stroke-opacity=".18" stroke-width=".34">
+        <rect x="0" y="0" width="44" height="20"/>
+        <line x1="15" y1="0" x2="15" y2="20"/>
+        <line x1="29" y1="0" x2="29" y2="20"/>
+        <line x1="0" y1="10" x2="15" y2="10"/>
+        <line x1="29" y1="10" x2="44" y2="10"/>
+      </g>
+    </g>
+  </svg>
+  <div class="wrap reveal">
+    <h2>Your next match is the first one<br>on <em>the record</em>.</h2>
+    <a class="btn btn-primary" href="https://apps.apple.com/app/id6792869715">Download on the App Store</a>
   </div>
 </section>
 </main>
@@ -369,5 +423,14 @@
 <!-- /#chrome:footer -->
 
 <script src="/assets/site.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Does it work without an Apple Watch?","acceptedAnswer":{"@type":"Answer","text":"Yes. The iPhone app is complete on its own — sessions, games, scores, stats and history all work with no watch at all. The watch adds wrist scoring and swing counting."}},
+{"@type":"Question","name":"Does it call the score out during play?","acceptedAnswer":{"@type":"Answer","text":"No, and that is deliberate. PickleRecord is not a live scorekeeper — it does not track serving rotation or announce 5-3-2. You log the result after each game and it builds your record from there. If you want spoken scoring mid-rally, you want a scorekeeper app instead."}},
+{"@type":"Question","name":"How accurate is the swing count?","acceptedAnswer":{"@type":"Answer","text":"It is an honest estimate, not a precise count. Swings are read from wrist motion on the watch, and ball handling or arm movement between points can register as swings, so it runs slightly high. It is a good measure of how much you played, not of how many times you struck the ball."}},
+{"@type":"Question","name":"Is my history capped on the free tier?","acceptedAnswer":{"@type":"Answer","text":"No. Unlimited match history is free forever. Pro adds analytics — trends, splits, records — on top of data you always keep."}},
+{"@type":"Question","name":"Can I get my data out?","acceptedAnswer":{"@type":"Answer","text":"Yes, as a Pro feature. Export your full game history as CSV from Settings. Free or Pro, your data always lives on your device and is never locked in — Pro just adds the one-tap export on top."}},
+{"@type":"Question","name":"Does it need an account or an internet connection?","acceptedAnswer":{"@type":"Answer","text":"Neither. There is no sign-in and no server. Everything is stored on your own devices and the app works fully offline — which matters on courts with bad reception."}}]}
+</script>
 </body>
 </html>

@@ -5,6 +5,10 @@
   --lime:#D6F553; --ink:#0B0F16; --slate:#16202F; --slate2:#3A4657;
   --court:#2F9E52; --court-dk:#1F7A3C; --paper:#FAFBF7; --mist:#BAC4D2;
   --bezel:#0D0F12;
+  /* Floor for secondary text on light backgrounds: AA (4.5:1) at small
+     sizes requires >=60% ink in the mix against --paper/#fff; anything
+     below that fails. Never mix ink below this for text colour. */
+  --ink-2:color-mix(in srgb, var(--ink) 60%, var(--paper));
 
   --serif:"Instrument Serif", Georgia, "Times New Roman", serif;
   --sans:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -52,7 +56,7 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
         color:color-mix(in srgb, var(--ink) 68%, var(--paper)); max-width:52ch; }
 .marginalia {
   font-family:var(--mono); font-size:.82rem; line-height:1.62;
-  color:color-mix(in srgb, var(--ink) 52%, var(--paper));
+  color:var(--ink-2);
   border-left:2px solid var(--lime); padding:8px 0 8px 14px; max-width:44ch;
 }
 .marginalia b { color:var(--court-dk); font-weight:700; }
@@ -72,7 +76,7 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
 .chip b { display:block; font-family:var(--num); font-weight:800;
           font-size:1.05rem; line-height:1.05; font-variant-numeric:tabular-nums; }
 .chip span { font-size:.72rem; font-weight:600;
-             color:color-mix(in srgb, var(--ink) 46%, var(--paper)); }
+             color:var(--ink-2); }
 .card { background:#fff; border:1px solid var(--rule); border-radius:14px;
         padding:18px 20px; box-shadow:var(--shadow-sm); }
 

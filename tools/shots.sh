@@ -118,7 +118,7 @@ SCALE=2
 # ceiling rather than silently truncating -- silent truncation is the exact
 # defect this script is being fixed for. MIN_HEIGHT keeps a very short page
 # (an empty dev stub, say) from producing a degenerate sliver of an image.
-MAX_HEIGHT=12000
+MAX_HEIGHT=20000
 MIN_HEIGHT=200
 
 # How long (ms) the measurement harness's own JS will wait on

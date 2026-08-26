@@ -258,6 +258,13 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
 .sticky-device { position:sticky; top:96px; align-self:start;
                  display:flex; justify-content:center; gap:18px; align-items:center; }
 @media (max-width:860px) { .sticky-device { position:relative; top:0; } }
+/* Same trap as .hero-stage img / .step img / .season-art .frame img above:
+   the img width/height HTML attributes become literal CSS height hints.
+   Constraining width alone (via the percentage/px widths below) leaves
+   height pinned to the unscaled attribute value instead of the intrinsic
+   ratio, badly stretching the watch and phone screenshots in this
+   section. height:auto forces the ratio-correct scale. */
+.sticky-device img { height:auto; }
 .sticky-device .frame-watch { width:190px; }
 .sticky-device .frame-phone { width:150px; opacity:.85; }
 .sticky-device .sync { color:var(--lime); font-size:1.5rem; }

@@ -80,6 +80,16 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
 .card { background:#fff; border:1px solid var(--rule); border-radius:14px;
         padding:18px 20px; box-shadow:var(--shadow-sm); }
 
+/* The press-kit fact sheet is the only <table> on the site and carries no
+   class, so it's scoped by element inside .card. table-layout:fixed keeps
+   long cell content (e.g. the App Store URL) from dictating the table's
+   own width, and overflow-wrap lets that same long unbroken token wrap
+   inside its cell instead of forcing the table -- and the page -- wider
+   than the viewport. Found via the 320px responsive audit: without this,
+   the fact sheet overflowed the viewport horizontally at 320px. */
+.card table { width:100%; table-layout:fixed; }
+.card table td { overflow-wrap:anywhere; word-break:break-word; }
+
 /* ---------- device frames ---------- */
 .frame { background:var(--bezel); border-radius:34px; padding:4px;
          box-shadow:var(--shadow-lg); display:inline-block; }
@@ -251,6 +261,20 @@ h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
 .sticky-device .frame-watch { width:190px; }
 .sticky-device .frame-phone { width:150px; opacity:.85; }
 .sticky-device .sync { color:var(--lime); font-size:1.5rem; }
+/* Below ~450px viewport, 190px + 150px + gaps no longer fits inside the
+   .wrap content box (padding alone is 40px at this range), and the two
+   fixed-px frames caused a genuine horizontal scrollbar at 390px and
+   320px -- found via the responsive audit, confirmed by comparing
+   document.documentElement.scrollWidth against clientWidth. Percentage
+   widths (against .sticky-device's own box, which fills the single
+   grid column below 860px) scale down with the viewport instead of
+   staying pinned at their desktop pixel size. */
+@media (max-width:480px) {
+  .sticky-device { gap:12px; }
+  .sticky-device .frame-watch { width:44%; }
+  .sticky-device .frame-phone { width:35%; }
+  .sticky-device .sync { font-size:1.15rem; }
+}
 .beats { display:flex; flex-direction:column; gap:14px; }
 /* Fixed px, not vh: this section's pacing must not depend on viewport
    height. The IntersectionObserver in site.js uses rootMargin:"-40% 0px

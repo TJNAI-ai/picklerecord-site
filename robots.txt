@@ -1,2 +1,5 @@
 User-agent: *
+Allow: /privacy
+Allow: /support
+Allow: /assets/
 Disallow: /

@@ -1,5 +1,2 @@
 User-agent: *
-Allow: /
-Disallow: /dev/
-
-Sitemap: https://picklerecord.app/sitemap.xml
+Disallow: /

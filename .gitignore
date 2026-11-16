@@ -2,3 +2,8 @@
 /tmp/
 *.pyc
 __pycache__/
+
+# Jekyll (local builds only; not used for the published maintenance page)
+_site/
+.jekyll-cache/
+.jekyll-metadata

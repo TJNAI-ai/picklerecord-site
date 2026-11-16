@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PickleRecord — the pickleball app that keeps your record</title>
+<meta name="description" content="Log each pickleball game in two taps from your iPhone or Apple Watch and watch a season become a win–loss record you can read. Unlimited history free. No account, no ads.">
+<link rel="canonical" href="https://picklerecord.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PickleRecord">
+<meta property="og:title" content="PickleRecord — the pickleball app that keeps your record">
+<meta property="og:description" content="Other apps keep score. This one keeps your win–loss record. iPhone and Apple Watch, no account required.">
+<meta property="og:url" content="https://picklerecord.app/">
+<meta property="og:image" content="https://picklerecord.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PickleRecord — the pickleball app that keeps your record">
+<meta name="twitter:description" content="Other apps keep score. This one keeps your win–loss record.">
+<meta name="twitter:image" content="https://picklerecord.app/assets/og-image.png">
+<link rel="icon" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}.trace-path{stroke-dashoffset:0!important}</style></noscript>
+</head>
+<body>
+
+<!-- #chrome:nav -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" aria-hidden="true" width="26" height="26">PickleRecord</a>
+    <a href="/#how">How it works</a>
+    <a href="/#watch">Apple Watch</a>
+    <a href="/#pricing">Pro</a>
+    <a href="/compare/">Compare</a>
+    <a href="/support/">Support</a>
+    <a class="btn btn-primary" href="https://apps.apple.com/app/id6792869715">Download</a>
+  </div>
+</nav>
+<!-- /#chrome:nav -->
+
+<main>
+<section class="hero">
+  <svg class="court-bg" viewBox="0 0 200 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g transform="translate(100 50) rotate(-9) scale(2.05) translate(-22 -10)">
+      <rect x="0" y="0" width="44" height="20" fill="#2F9E52" fill-opacity=".045"/>
+      <rect x="15" y="0" width="14" height="20" fill="#D6F553" fill-opacity=".16"/>
+      <g fill="none" stroke="#2F9E52" stroke-opacity=".2" stroke-width=".34">
+        <rect x="0" y="0" width="44" height="20"/>
+        <line x1="15" y1="0" x2="15" y2="20"/>
+        <line x1="29" y1="0" x2="29" y2="20"/>
+        <line x1="0" y1="10" x2="15" y2="10"/>
+        <line x1="29" y1="10" x2="44" y2="10"/>
+      </g>
+    </g>
+  </svg>
+  <div class="hero-bloom a" aria-hidden="true"></div>
+  <div class="hero-bloom b" aria-hidden="true"></div>
+
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">iPhone &middot; Apple Watch</p>
+      <h1>You're not getting better at pickleball.<br>You're getting better at your <em>mistakes</em>.</h1>
+      <p class="lede">PickleRecord turns the games you already play into proof
+        you're improving. Two taps per game, and your season becomes win rate,
+        streaks, and trends you can actually read. Wear an Apple Watch? It
+        counts your swings too.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6792869715">Download on the App Store</a>
+        <a class="btn btn-text" href="#how">See how it works</a>
+      </div>
+      <div class="hero-trust">
+        <span>No account</span><span>No ads</span>
+        <span>Unlimited history, free forever</span><span>Nothing leaves your device</span>
+      </div>
+      <p class="marginalia">A busy session runs about <b>220 swings</b>.
+        We count them from wrist motion &mdash; an honest estimate, not a laser.</p>
+    </div>
+
+    <div class="hero-stage">
+      <img class="pcard" src="/assets/shots/player-card.webp" width="660" height="1434"
+           alt="The PickleRecord Share Player Card sheet with Last 30 Days selected, showing a green-and-black player card for Tianna with a table-tennis paddle icon, a 3.5+ · LAST 30 badge, and stat tiles for 70% win rate, 33 games, an 11–3 best win, and a W1 streak">
+      <span class="frame frame-phone">
+        <img src="/assets/shots/home.webp" width="660" height="1434" loading="eager"
+             alt="The PickleRecord home screen showing an all-time record of 35–12, a 74% win rate over 47 games, a Start Session button, and a list of recent sessions">
+      </span>
+      <span class="frame frame-watch">
+        <img src="/assets/shots/watch-score.webp" width="416" height="496"
+             alt="PickleRecord on Apple Watch showing an Open Play session with a score of 3–1, Win and Loss buttons, and a Game 1 · Win row">
+      </span>
+      <div class="chip keep" style="left:0;top:12%"><b>W6</b><span>Best streak</span></div>
+      <div class="chip" style="right:24%;top:46%"><b>+0.9</b><span>Differential trend</span></div>
+      <div class="chip" style="left:28%;bottom:8%"><b>70% &rarr; 86%</b><span>30 days vs prior 30</span></div>
+      <div class="chip keep" style="right:2%;bottom:22%"><b>3,525</b><span>Swings logged</span></div>
+    </div>
+  </div>
+
+  <div class="season-strip">
+    <div class="wrap">
+      <span class="lbl">The season so far</span>
+      <span class="it"><b>47</b> games</span>
+      <span class="it"><b>6</b> weeks</span>
+      <span class="it"><b>3,525</b> swings</span>
+      <span class="it"><b>0</b> accounts</span>
+    </div>
+  </div>
+  <div class="wrap"><p class="demo-note">Screenshots show demo data seeded for
+    illustration &mdash; six weeks of sessions on a test device.</p></div>
+</section>
+
+<section class="section" id="how">
+  <div class="wrap how-grid reveal">
+    <div>
+      <p class="eyebrow">How it works</p>
+      <h2>Start a session. Tap <em>Win</em>. That's the whole thing.</h2>
+      <p class="lede">Scores, court, session type and notes are all optional. The
+        only required tap is Win or Loss &mdash; so logging never pulls you out of
+        the game. Mistyped something? Edit or delete any game later.</p>
+      <p class="marginalia">Sessions group your games the way you actually play:
+        one Tuesday open play, one league night, one drilling hour &mdash;
+        <b>each with its own record</b>.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="frame" style="display:block"><img src="/assets/shots/home.webp"
+          width="660" height="1434" loading="lazy"
+          alt="The PickleRecord home screen showing an all-time record of 35–12, a 74% win rate over 47 games, a Start Session button, and a Recent sessions list"></span>
+        <p class="cap"><b>Step 1</b>Start a session</p>
+      </div>
+      <div class="step step-watch">
+        <span class="frame frame-watch"><img src="/assets/shots/watch-score.webp"
+          width="416" height="496" loading="lazy"
+          alt="PickleRecord on Apple Watch during an Open Play session, showing a score of 3–1, a green Win button and a red Loss button, and a Game 1 · Win row"></span>
+        <p class="cap"><b>Step 2</b>Win or Loss &mdash; from your wrist</p>
+      </div>
+      <div class="step">
+        <span class="frame" style="display:block"><img src="/assets/shots/progress-free.webp"
+          width="660" height="1434" loading="lazy"
+          alt="The PickleRecord Progress tab showing 47 games, a 35–12 record, a 74% win rate, an average differential of +2.0, a current 1-win streak, and a recent win rate of 86% &rarr; 70% comparing the last 30 days with the prior 30"></span>
+        <p class="cap"><b>Step 3</b>Your record updates itself</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section watch-sec" id="watch">
+  <div class="wrap reveal">
+    <p class="eyebrow">Apple Watch</p>
+    <h2>The phone stays in the bag.<br>The record still gets <em>kept</em>.</h2>
+    <p class="lede">A real watchOS app, not a notification mirror. Start a session,
+      score it, and end it from your wrist &mdash; everything lands on your iPhone
+      by itself.</p>
+
+    <div class="sticky-wrap">
+      <div class="sticky-device">
+        <span class="frame frame-watch">
+          <img id="stickyWatch" src="/assets/shots/watch-start.webp" width="416" height="496"
+               alt="PickleRecord on Apple Watch: a Level picker set to All Levels, a Track swings toggle switched on, and a green outlined Start Session button with a plus icon">
+        </span>
+        <span class="sync" aria-hidden="true">⇆</span>
+        <span class="frame frame-phone">
+          <img src="/assets/shots/home.webp" width="660" height="1434" loading="lazy"
+               alt="The PickleRecord home screen showing an all-time record of 35–12, a 74% win rate over 47 games, a Start Session button, and a Recent sessions list">
+        </span>
+      </div>
+      <div class="beats">
+        <div class="beat" data-screen="start">
+          <h3>Start without your phone</h3>
+          <p>Pick session type and skill level on the watch and go. The iPhone can stay
+             in your bag the whole session.</p>
+        </div>
+        <div class="beat" data-screen="score">
+          <h3>Score from your wrist</h3>
+          <p>Win or Loss, one tap between games. No screen to wake, no walking back to the
+             bench, no forgetting the result.</p>
+        </div>
+        <div class="beat" data-screen="entry">
+          <h3>Add the score if it mattered</h3>
+          <p>Type it, or say it &mdash; "eleven seven" is enough. Optional every time.</p>
+        </div>
+        <div class="beat" data-screen="games">
+          <h3>The session builds itself</h3>
+          <p>Every game stacks up on the watch as you play, then syncs to your iPhone
+             and saves to Apple Health as a pickleball workout &mdash; so you get the
+             Activity ring credit too.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="season">
+  <div class="wrap season-grid reveal">
+    <div>
+      <p class="eyebrow">Six weeks in</p>
+      <h2>Every match you log makes the next number <em>truer</em>.</h2>
+      <p class="lede">One game tells you nothing. Forty-seven tell you whether the
+        third-shot drop is working. PickleRecord keeps every game you have ever
+        logged &mdash; unlimited history, on the free tier, permanently &mdash; so
+        the trend has something to stand on.</p>
+      <div class="stat-row">
+        <div><b>35&ndash;12</b><span>All-time record</span></div>
+        <div><b>74%</b><span>Win rate</span></div>
+        <div><b>W6</b><span>Best streak</span></div>
+        <div><b>81%</b><span>Against 3.5+</span></div>
+      </div>
+    </div>
+    <div class="season-art">
+      <span class="frame">
+        <img src="/assets/shots/progress-free.webp" width="660" height="1434" loading="lazy"
+             alt="The PickleRecord progress screen showing overall record, win rate, current streak, and performance broken down by opponent skill level">
+      </span>
+      <div class="card trend-card">
+        <div class="hd">Win % trend &middot; rolling 10 games (Pro)</div>
+        <svg viewBox="0 0 120 44" aria-hidden="true" style="width:100%;height:auto">
+          <line x1="0" y1="38" x2="120" y2="38" stroke="#BAC4D2" stroke-width="1"/>
+          <polyline points="0,11 3.24,14 6.49,14 9.73,14 12.97,14 16.22,14 19.46,14 22.70,14 25.95,17 29.19,20 32.43,20 35.68,17 38.92,17 42.16,20 45.41,20 48.65,23 51.89,23 55.14,20 58.38,17 61.62,14 64.86,14 68.11,14 71.35,17 74.59,14 77.84,14 81.08,11 84.32,11 87.57,11 90.81,11 94.05,14 97.30,17 100.54,17 103.78,17 107.03,17 110.27,17 113.51,17 116.76,20 120,20"
+                    fill="none" stroke="#2F9E52" stroke-width="2.4"
+                    stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+        <div class="ft">Jul 23 &rarr; Aug 24 &middot; rolling win rate over your last ten games</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="swings">
+  <div class="wrap swing-grid reveal">
+    <div>
+      <p class="eyebrow">CoreMotion, on the watch</p>
+      <h2>We count your swings. Here's what it <em>can't</em> do.</h2>
+      <p class="lede">Your Apple Watch reads the accelerometer while you play and
+        counts swings live, on the watch. The raw motion is analysed as it arrives
+        and thrown away when the session ends &mdash; only the count is kept.</p>
+      <ul class="limits">
+        <li>Ball handling and arm movement between points can read as swings, so
+          the count runs a little high.</li>
+        <li>It does not know a dink from a drive, or a swing from a whiff.</li>
+        <li>Treat it as an honest measure of how much you played &mdash; not a
+          laser count of paddle contacts.</li>
+      </ul>
+      <p class="marginalia" style="margin-top:22px">Telling shot types apart needs
+        motion-shape analysis. <b>That's post-launch work</b>, and we would rather
+        say so than imply we already do it.</p>
+    </div>
+    <div class="card trace-card">
+      <div class="hd"><span>Swing trace &middot; 11 s</span><b>6</b></div>
+      <svg viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"
+           style="width:100%;height:64px">
+        <path class="trace-path"
+              d="M0 20 L8 19 L12 6 L16 32 L20 18 L30 20 L38 21 L42 8 L46 31 L50 19 L62 20 L68 19 L72 5 L76 33 L80 19 L92 20 L99 20 L103 7 L107 32 L111 19 L124 20 L131 19 L135 6 L139 31 L143 20 L156 20 L163 19 L167 7 L171 32 L175 19 L188 20 L200 20"
+              fill="none" stroke-width="1.6"
+              stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+      <div class="ft">Wrist accelerometer &middot; analysed on-watch, then discarded</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="wrap price-grid reveal">
+    <div>
+      <p class="eyebrow">Pricing</p>
+      <h2>The record is free.<br>The <em>coaching</em> is Pro.</h2>
+      <p class="lede">Your match history is never held hostage. Every game you log
+        stays readable forever without paying &mdash; no 30-game cap, no trial wall
+        on your own data. Pro adds the analysis on top.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3>Free</h3>
+        <p class="price">Free, forever</p>
+        <ul>
+          <li>Unlimited match history</li>
+          <li>Record, win rate, current streak</li>
+          <li>Last 30 days vs the prior 30</li>
+          <li>Performance by opponent level</li>
+          <li>Apple Watch app, swings counted every session</li>
+          <li>Apple Health workouts</li>
+        </ul>
+      </div>
+      <div class="plan plan-pro">
+        <h3>Pro</h3>
+        <p class="price">$2.99/month &middot; $19.99/year &middot; $39.99 once</p>
+        <ul>
+          <li>Differential trend &mdash; are wins getting more convincing?</li>
+          <li>Streak records, best and worst</li>
+          <li>Games per week and swings per session</li>
+          <li>Personal bests</li>
+          <li>Splits by session type and skill level</li>
+          <li>Per-session swing stats &mdash; your first session is free</li>
+          <li>CSV export of everything</li>
+        </ul>
+        <p class="plan-note">The annual plan includes a 7-day free trial. The
+          $39.99 lifetime purchase is a one-time payment &mdash; about two years
+          of the annual plan, and then it stops costing anything. Annual and
+          Lifetime both include Family Sharing. Auto-renewal and cancellation
+          terms are in the footer below.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section privacy-sec" id="privacy">
+  <div class="wrap reveal">
+    <p class="eyebrow">Private by design</p>
+    <h2>No account. No ads. No server.<br>Nothing to <em>leak</em>.</h2>
+    <p class="lede">There is no sign-up, because there is nowhere to sign up to.
+      Your matches live on your iPhone and Apple Watch and go nowhere else. We
+      could not sell your data if we wanted to &mdash; we never receive it.</p>
+    <div class="pill-row">
+      <span>No sign-in</span>
+      <span>No analytics SDK</span>
+      <span>No third-party trackers</span>
+      <span>Raw motion discarded at session end</span>
+      <span class="hi">App Store label: Data Not Collected</span>
+      <span>CSV export (Pro)</span>
+    </div>
+    <p class="lede" style="margin-top:24px;font-size:.9rem">
+      This website has no analytics either. Open your browser's network tab and
+      check &mdash; the only third-party requests are the two Google Fonts hosts.</p>
+  </div>
+</section>
+
+<section class="section" id="compare">
+  <div class="wrap compare-teaser reveal">
+    <div>
+      <p class="eyebrow">Choosing an app</p>
+      <h2>Most pickleball apps track the rally. This one tracks the <em>season</em>.</h2>
+    </div>
+    <div class="vs">
+      <div>
+        <h3>A scorekeeper</h3>
+        <p>Tracks serving rotation, calls the score aloud, keeps you honest mid-game
+          &mdash; then resets when the game ends.</p>
+      </div>
+      <div class="mine">
+        <h3>PickleRecord</h3>
+        <p>Logs the result, keeps every game you have ever played, and shows you the
+          trend across a season.</p>
+      </div>
+    </div>
+    <a class="btn btn-text" href="/compare/">Full comparison</a>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap reveal">
+    <p class="eyebrow">Questions</p>
+    <h2>The things people ask <em>first</em>.</h2>
+    <div class="faq-list" style="margin-top:28px">
+      <details><summary>Does it work without an Apple Watch?</summary>
+        <p>Yes. The iPhone app is complete on its own &mdash; sessions, games,
+          scores, stats and history all work with no watch at all. The watch adds
+          wrist scoring and swing counting.</p></details>
+      <details><summary>Does it call the score out during play?</summary>
+        <p>No, and that is deliberate. PickleRecord is not a live scorekeeper &mdash;
+          it does not track serving rotation or announce 5-3-2. You log the result
+          after each game and it builds your record from there. If you want spoken
+          scoring mid-rally, you want a scorekeeper app instead.</p></details>
+      <details><summary>How accurate is the swing count?</summary>
+        <p>It is an honest estimate, not a precise count. Swings are read from wrist
+          motion on the watch, and ball handling or arm movement between points can
+          register as swings, so it runs slightly high. It is a good measure of how
+          much you played, not of how many times you struck the ball.</p></details>
+      <details><summary>Is my history capped on the free tier?</summary>
+        <p>No. Unlimited match history is free forever. Pro adds analytics &mdash;
+          trends, splits, records &mdash; on top of data you always keep.</p></details>
+      <details><summary>Can I get my data out?</summary>
+        <p>Yes, as a Pro feature. Export your full game history as CSV from
+          Settings. Free or Pro, your data always lives on your device and is
+          never locked in &mdash; Pro just adds the one-tap export on top.</p></details>
+      <details><summary>Does it need an account or an internet connection?</summary>
+        <p>Neither. There is no sign-in and no server. Everything is stored on your
+          own devices and the app works fully offline &mdash; which matters on courts
+          with bad reception.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-final">
+  <svg class="court-bg" viewBox="0 0 200 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g transform="translate(100 50) rotate(-9) scale(2.4) translate(-22 -10)">
+      <rect x="15" y="0" width="14" height="20" fill="#D6F553" fill-opacity=".18"/>
+      <g fill="none" stroke="#2F9E52" stroke-opacity=".18" stroke-width=".34">
+        <rect x="0" y="0" width="44" height="20"/>
+        <line x1="15" y1="0" x2="15" y2="20"/>
+        <line x1="29" y1="0" x2="29" y2="20"/>
+        <line x1="0" y1="10" x2="15" y2="10"/>
+        <line x1="29" y1="10" x2="44" y2="10"/>
+      </g>
+    </g>
+  </svg>
+  <div class="wrap reveal">
+    <h2>Your next match is the first one<br>on <em>the record</em>.</h2>
+    <a class="btn btn-primary" href="https://apps.apple.com/app/id6792869715">Download on the App Store</a>
+  </div>
+</section>
+</main>
+
+<!-- #chrome:footer -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div style="font-weight:700;font-size:1.08rem;color:#fff;letter-spacing:-.025em">PickleRecord</div>
+        <div style="font-size:.9rem;margin-top:6px">Pickleball match tracking for iPhone and Apple Watch.</div>
+      </div>
+      <div><h3>App</h3>
+        <a href="/#how">How it works</a><a href="/#watch">Apple Watch</a><a href="/#pricing">Pro</a></div>
+      <div><h3>Help</h3>
+        <a href="/support/">Support</a><a href="/support/#faq">FAQ</a><a href="mailto:support@tjnai.ai">Contact</a></div>
+      <div><h3>Legal</h3>
+        <a href="/privacy/">Privacy</a>
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a></div>
+      <div><h3>More</h3>
+        <a href="/compare/">Compare</a><a href="/press/">Press kit</a><a href="https://tjnai.ai">TJNAI</a></div>
+    </div>
+    <p class="legal">Pro Monthly and Pro Annual are auto-renewable subscriptions billed to your Apple Account. A subscription renews unless cancelled at least 24 hours before the period ends; manage or cancel in Settings &rsaquo; Apple Account &rsaquo; Subscriptions. Pro Lifetime is a one-time purchase, not a subscription. Apple, Apple Watch, and App Store are trademarks of Apple Inc. &copy; 2026 TJNAI.ai LLC.</p>
+  </div>
+</footer>
+<!-- /#chrome:footer -->
+
+<script src="/assets/site.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Does it work without an Apple Watch?","acceptedAnswer":{"@type":"Answer","text":"Yes. The iPhone app is complete on its own — sessions, games, scores, stats and history all work with no watch at all. The watch adds wrist scoring and swing counting."}},
+{"@type":"Question","name":"Does it call the score out during play?","acceptedAnswer":{"@type":"Answer","text":"No, and that is deliberate. PickleRecord is not a live scorekeeper — it does not track serving rotation or announce 5-3-2. You log the result after each game and it builds your record from there. If you want spoken scoring mid-rally, you want a scorekeeper app instead."}},
+{"@type":"Question","name":"How accurate is the swing count?","acceptedAnswer":{"@type":"Answer","text":"It is an honest estimate, not a precise count. Swings are read from wrist motion on the watch, and ball handling or arm movement between points can register as swings, so it runs slightly high. It is a good measure of how much you played, not of how many times you struck the ball."}},
+{"@type":"Question","name":"Is my history capped on the free tier?","acceptedAnswer":{"@type":"Answer","text":"No. Unlimited match history is free forever. Pro adds analytics — trends, splits, records — on top of data you always keep."}},
+{"@type":"Question","name":"Can I get my data out?","acceptedAnswer":{"@type":"Answer","text":"Yes, as a Pro feature. Export your full game history as CSV from Settings. Free or Pro, your data always lives on your device and is never locked in — Pro just adds the one-tap export on top."}},
+{"@type":"Question","name":"Does it need an account or an internet connection?","acceptedAnswer":{"@type":"Answer","text":"Neither. There is no sign-in and no server. Everything is stored on your own devices and the app works fully offline — which matters on courts with bad reception."}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication",
+"name":"PickleRecord: Match Tracker",
+"operatingSystem":"iOS 18.0, watchOS 11.0",
+"applicationCategory":"SportsApplication",
+"url":"https://picklerecord.app/",
+"downloadUrl":"https://apps.apple.com/app/id6792869715",
+"description":"Pickleball match tracker for iPhone and Apple Watch. Log games in two taps and build a season-long win–loss record. Unlimited history free, no account required.",
+"publisher":{"@type":"Organization","name":"TJNAI.ai LLC","url":"https://tjnai.ai"},
+"offers":[
+{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free"},
+{"@type":"Offer","price":"2.99","priceCurrency":"USD","name":"Pro Monthly"},
+{"@type":"Offer","price":"19.99","priceCurrency":"USD","name":"Pro Annual"},
+{"@type":"Offer","price":"39.99","priceCurrency":"USD","name":"Pro Lifetime"}]}
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# Maintenance mode for GitHub Pages (Jekyll).
+# Folders that start with an underscore, including _source/, are not published.
+# Original site files live in _source/. See MAINTENANCE.md to restore.
+exclude:
+  - README.md
+  - MAINTENANCE.md

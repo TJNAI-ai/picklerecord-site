@@ -1,0 +1,464 @@
+/* PickleRecord — design system.
+   Palette matches the shipped app (docs/marketing/asc-screenshots/strip.html).
+   Derive every tint with color-mix(). Never hardcode a grey. */
+:root {
+  --lime:#D6F553; --ink:#0B0F16; --slate:#16202F; --slate2:#3A4657;
+  --court:#2F9E52; --court-dk:#1F7A3C; --paper:#FAFBF7; --mist:#BAC4D2;
+  --bezel:#0D0F12;
+  /* Floor for secondary text on light backgrounds: AA (4.5:1) at small
+     sizes requires >=60% ink in the mix against --paper/#fff; anything
+     below that fails. Never mix ink below this for text colour. */
+  --ink-2:color-mix(in srgb, var(--ink) 60%, var(--paper));
+
+  --serif:"Instrument Serif", Georgia, "Times New Roman", serif;
+  --sans:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --num:"Archivo", var(--sans);
+  --mono:ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --maxw:1140px;
+  --rule:color-mix(in srgb, var(--ink) 9%, transparent);
+  --rule-strong:color-mix(in srgb, var(--ink) 16%, transparent);
+  --shadow-sm:0 8px 20px color-mix(in srgb, var(--ink) 8%, transparent);
+  --shadow-md:0 14px 30px color-mix(in srgb, var(--ink) 13%, transparent);
+  --shadow-lg:0 34px 62px color-mix(in srgb, var(--ink) 24%, transparent);
+}
+
+*,*::before,*::after { box-sizing:border-box; }
+* { margin:0; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body {
+  background:var(--paper); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg { display:block; max-width:100%; }
+a { color:inherit; text-decoration:none; }
+:focus-visible { outline:3px solid var(--court-dk); outline-offset:3px; border-radius:4px; }
+
+.wrap { max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,4vw,40px); }
+.section { position:relative; padding:clamp(56px,7vw,104px) 0; }
+
+/* ---------- type ---------- */
+h1,h2,h3 { font-family:var(--serif); font-weight:400; line-height:1.04;
+           letter-spacing:-.018em; }
+h1 em, h2 em, h3 em { font-style:italic; color:var(--court-dk); }
+h1 { font-size:clamp(2.4rem,1.7rem + 3.2vw,4.15rem); }
+h2 { font-size:clamp(1.9rem,1.4rem + 2.1vw,3rem); }
+h3 { font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem); }
+
+.eyebrow {
+  font-family:var(--sans); font-size:.76rem; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--court-dk);
+  display:flex; align-items:center; gap:9px; margin-bottom:16px;
+}
+.eyebrow::before { content:""; width:20px; height:1px; background:var(--court); flex:none; }
+.lede { font-size:clamp(1rem,.96rem + .25vw,1.14rem);
+        color:color-mix(in srgb, var(--ink) 68%, var(--paper)); max-width:52ch; }
+.marginalia {
+  font-family:var(--mono); font-size:.82rem; line-height:1.62;
+  color:var(--ink-2);
+  border-left:2px solid var(--lime); padding:8px 0 8px 14px; max-width:44ch;
+}
+.marginalia b { color:var(--court-dk); font-weight:700; }
+
+/* ---------- buttons ---------- */
+.btn { display:inline-flex; align-items:center; gap:10px; font-weight:600;
+       font-size:1rem; padding:14px 24px; border-radius:999px;
+       transition:transform .15s ease, opacity .2s ease; }
+.btn-primary { background:var(--ink); color:var(--paper); box-shadow:var(--shadow-md); }
+.btn-primary:hover { transform:translateY(-2px); }
+.btn-text { padding:14px 2px; border-bottom:2px solid var(--lime); border-radius:0; }
+.btn-text:hover { border-bottom-color:var(--court); }
+
+/* ---------- chips & cards ---------- */
+.chip { position:absolute; background:#fff; border:1px solid var(--rule);
+        border-radius:12px; padding:9px 13px; box-shadow:var(--shadow-md); z-index:9; }
+.chip b { display:block; font-family:var(--num); font-weight:800;
+          font-size:1.05rem; line-height:1.05; font-variant-numeric:tabular-nums; }
+.chip span { font-size:.72rem; font-weight:600;
+             color:var(--ink-2); }
+.card { background:#fff; border:1px solid var(--rule); border-radius:14px;
+        padding:18px 20px; box-shadow:var(--shadow-sm); }
+
+/* The press-kit fact sheet is the only <table> on the site and carries no
+   class, so it's scoped by element inside .card. table-layout:fixed keeps
+   long cell content (e.g. the App Store URL) from dictating the table's
+   own width, and overflow-wrap lets that same long unbroken token wrap
+   inside its cell instead of forcing the table -- and the page -- wider
+   than the viewport. Found via the 320px responsive audit: without this,
+   the fact sheet overflowed the viewport horizontally at 320px. */
+.card table { width:100%; table-layout:fixed; }
+.card table td { overflow-wrap:anywhere; word-break:break-word; }
+
+/* ---------- device frames ---------- */
+.frame { background:var(--bezel); border-radius:34px; padding:4px;
+         box-shadow:var(--shadow-lg); display:inline-block; }
+.frame img { border-radius:30px; }
+.frame-watch { border-radius:20px; padding:3px; }
+.frame-watch img { border-radius:17px; }
+
+/* ---------- court substrate ---------- */
+.court-bg { position:absolute; inset:0; z-index:0; pointer-events:none; }
+
+/* ---------- motion ---------- */
+.reveal { opacity:0; transform:translateY(24px);
+          transition:opacity .8s ease, transform .8s ease; }
+.reveal.in { opacity:1; transform:none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  .reveal { opacity:1; transform:none; transition:none; }
+  .btn { transition:none; }
+  .trace-path { stroke-dashoffset:0 !important; animation:none !important; }
+}
+
+/* ---------- nav ---------- */
+.nav { position:sticky; top:0; z-index:40;
+       background:color-mix(in srgb, var(--paper) 82%, transparent);
+       backdrop-filter:saturate(1.3) blur(12px);
+       border-bottom:1px solid var(--rule); }
+.nav .wrap { display:flex; align-items:center; gap:26px; height:66px; }
+.nav .brand { display:flex; align-items:center; gap:9px; font-weight:700;
+              font-size:1.08rem; letter-spacing:-.025em; margin-right:auto; }
+.nav .brand img { width:26px; height:26px; border-radius:8px; }
+.nav a:not(.brand):not(.btn) { font-size:.92rem; font-weight:600;
+              color:color-mix(in srgb, var(--ink) 62%, var(--paper)); }
+.nav a:not(.brand):not(.btn):hover { color:var(--ink); }
+.nav .btn { padding:9px 18px; font-size:.9rem; }
+@media (max-width:860px) { .nav a:not(.brand):not(.btn) { display:none; } }
+
+/* ---------- footer ---------- */
+.footer { background:var(--slate); color:var(--mist);
+          padding:clamp(40px,5vw,64px) 0 32px; }
+.footer .cols { display:grid; grid-template-columns:1.6fr repeat(4,1fr);
+                gap:28px; }
+@media (max-width:760px) { .footer .cols { grid-template-columns:1fr 1fr; } }
+.footer h3 { font-family:var(--sans); font-size:.78rem; font-weight:700;
+             letter-spacing:.14em; text-transform:uppercase; color:#fff;
+             margin-bottom:12px; }
+.footer a { display:block; font-size:.92rem; line-height:2; }
+.footer a:hover { color:#fff; }
+.footer .legal { margin-top:32px; padding-top:20px;
+                 border-top:1px solid color-mix(in srgb, #fff 12%, transparent);
+                 font-size:.82rem; line-height:1.7;
+                 color:color-mix(in srgb, var(--mist) 72%, var(--slate)); }
+
+/* ---------- hero ---------- */
+.hero { position:relative; overflow:hidden; padding:clamp(30px,4vw,56px) 0 0; }
+.hero-grid { position:relative; z-index:5; display:grid;
+             grid-template-columns:.93fr 1.07fr; gap:clamp(24px,4vw,52px);
+             align-items:center; padding-bottom:clamp(60px,7vw,96px); }
+@media (max-width:960px) { .hero-grid { grid-template-columns:1fr; gap:34px; } }
+.hero h1 { margin-bottom:18px; }
+.hero .lede { margin-bottom:24px; }
+.hero-ctas { display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+             margin-bottom:22px; }
+.hero-trust { display:flex; gap:8px 20px; flex-wrap:wrap; font-size:.85rem;
+              font-weight:600; color:var(--ink-2);
+              margin-bottom:22px; }
+.hero-trust span::before { content:"✓"; color:var(--court); font-weight:800;
+                           margin-right:6px; }
+.hero-bloom { position:absolute; border-radius:50%; filter:blur(72px);
+              z-index:1; pointer-events:none; }
+.hero-bloom.a { width:44%; aspect-ratio:1; background:var(--lime);
+                opacity:.4; left:-10%; top:-18%; }
+.hero-bloom.b { width:28%; aspect-ratio:1; background:var(--court);
+                opacity:.18; right:26%; bottom:-14%; }
+
+.hero-stage { position:relative; min-height:clamp(360px,42vw,520px); }
+/* The width/height HTML attributes on these images (kept for CLS
+   prevention) map to explicit CSS width AND height presentational hints.
+   Overriding only width here leaves the height hint in place as a literal
+   unscaled pixel value instead of scaling with the intrinsic ratio, which
+   badly distorts and overflows rotated collage images. height:auto forces
+   the ratio-correct scale. */
+.hero-stage img { height:auto; }
+.hero-stage .frame-phone { position:absolute; left:22%; top:0; width:30%; z-index:6; }
+.hero-stage .frame-watch { position:absolute; left:6%; top:42%; width:16%;
+                           z-index:8; transform:rotate(-7deg); }
+.hero-stage .pcard { position:absolute; right:4%; top:6%; width:24%; z-index:5;
+                     transform:rotate(6deg); border-radius:14px;
+                     box-shadow:var(--shadow-lg); }
+@media (max-width:960px) {
+  /* min-height:430px was a fixed guess that didn't track real content: the
+     phone frame is 40% of the stage's width, and at the images' true
+     660:1434 intrinsic ratio that renders far taller than 430px through most
+     of this range, overflowing the stage. aspect-ratio (275/239 = 0.4 *
+     1434/660, i.e. frame-phone's width share times the screenshot's own
+     height/width ratio) makes the stage's height a function of its own
+     width instead of a guessed constant, so it always has room for the
+     tallest element regardless of viewport width. */
+  .hero-stage { min-height:0; aspect-ratio:275/239; }
+  .hero-stage .frame-phone { left:26%; width:40%; }
+  .hero-stage .frame-watch { left:2%; width:21%; }
+  .hero-stage .pcard { right:0; width:30%; }
+}
+@media (max-width:560px) { .hero-stage .chip { display:none; }
+  .hero-stage .chip.keep { display:block; } }
+
+/* season strip */
+.season-strip { position:relative; z-index:6; background:var(--ink);
+                border-top:3px solid var(--lime); }
+.season-strip .wrap { display:flex; align-items:center; gap:clamp(14px,3vw,34px);
+                      flex-wrap:wrap; padding-top:16px; padding-bottom:16px; }
+.season-strip .lbl { font-size:.75rem; font-weight:700; letter-spacing:.19em;
+                     text-transform:uppercase; color:var(--lime); }
+.season-strip .it { font-size:.92rem; font-weight:600; color:var(--mist);
+                    display:flex; align-items:baseline; gap:7px; }
+.season-strip .it b { font-family:var(--num); font-weight:800; font-size:1.3rem;
+                      color:#fff; font-variant-numeric:tabular-nums; }
+.demo-note { font-size:.76rem; color:var(--ink-2);
+             margin-top:14px; }
+
+/* ---------- how it works ---------- */
+.how-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,60px);
+            align-items:center; }
+@media (max-width:860px) { .how-grid { grid-template-columns:1fr; } }
+/* The middle step is a watch screenshot (416:496, near-square) between two
+   phone screenshots (660:1434, more than twice as tall). Equal 1fr columns
+   at full width would either distort the watch or leave it looking like a
+   squat leftover with its caption floating at a different height than the
+   phones' captions. align-items:end anchors every step to the row's bottom
+   regardless of its own frame height, so all three captions land on the
+   same line; .step-watch then caps the watch frame at a deliberate
+   fraction of its column and centers it instead of stretching it edge to
+   edge like the phones. */
+.steps { display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+         align-items:end; }
+/* height:auto is required alongside width:100%: the img width/height HTML
+   attributes become presentational height hints the browser applies
+   literally unless a competing CSS height rule overrides them (see the
+   .hero-stage img comment above for the same trap) -- without it these
+   screenshots render squeezed and stretched instead of scaled. */
+.step img { width:100%; height:auto; }
+.step-watch { text-align:center; }
+.step-watch .frame-watch { width:58%; }
+.step .cap { margin-top:12px; font-size:.9rem; font-weight:600; line-height:1.45; }
+.step .cap b { display:block; font-family:var(--num); font-weight:800;
+               color:var(--court-dk); font-size:.78rem; letter-spacing:.12em;
+               text-transform:uppercase; margin-bottom:3px; }
+/* Below ~600px the three-across row leaves each phone screenshot under
+   110px wide -- a thumbnail, not a legible screen. Stack instead so every
+   step gets the section's full width. */
+@media (max-width:600px) {
+  .steps { grid-template-columns:1fr; align-items:stretch; gap:28px; }
+  .step-watch .frame-watch { width:44%; }
+}
+
+/* ---------- sticky watch section ---------- */
+.watch-sec { background:var(--ink); color:#fff; }
+.watch-sec h2 { color:#fff; }
+.watch-sec h2 em { color:var(--lime); }
+.watch-sec .lede { color:var(--mist); }
+.watch-sec .eyebrow { color:var(--lime); }
+.watch-sec .eyebrow::before { background:var(--lime); }
+.sticky-wrap { display:grid; grid-template-columns:1fr 1fr;
+               gap:clamp(28px,5vw,56px); align-items:start; margin-top:34px; }
+@media (max-width:860px) { .sticky-wrap { grid-template-columns:1fr; gap:22px; } }
+.sticky-device { position:sticky; top:96px; align-self:start;
+                 display:flex; justify-content:center; gap:18px; align-items:center; }
+@media (max-width:860px) { .sticky-device { position:relative; top:0; } }
+/* Same trap as .hero-stage img / .step img / .season-art .frame img above:
+   the img width/height HTML attributes become literal CSS height hints.
+   Constraining width alone (via the percentage/px widths below) leaves
+   height pinned to the unscaled attribute value instead of the intrinsic
+   ratio, badly stretching the watch and phone screenshots in this
+   section. height:auto forces the ratio-correct scale. */
+.sticky-device img { height:auto; }
+.sticky-device .frame-watch { width:190px; }
+.sticky-device .frame-phone { width:150px; opacity:.85; }
+.sticky-device .sync { color:var(--lime); font-size:1.5rem; }
+/* Below ~450px viewport, 190px + 150px + gaps no longer fits inside the
+   .wrap content box (padding alone is 40px at this range), and the two
+   fixed-px frames caused a genuine horizontal scrollbar at 390px and
+   320px -- found via the responsive audit, confirmed by comparing
+   document.documentElement.scrollWidth against clientWidth. Percentage
+   widths (against .sticky-device's own box, which fills the single
+   grid column below 860px) scale down with the viewport instead of
+   staying pinned at their desktop pixel size. */
+@media (max-width:480px) {
+  .sticky-device { gap:12px; }
+  .sticky-device .frame-watch { width:44%; }
+  .sticky-device .frame-phone { width:35%; }
+  .sticky-device .sync { font-size:1.15rem; }
+}
+.beats { display:flex; flex-direction:column; gap:14px; }
+/* Fixed px, not vh: this section's pacing must not depend on viewport
+   height. The IntersectionObserver in site.js uses rootMargin:"-40% 0px
+   -50% 0px" to activate one beat at a time as it crosses a narrow band
+   near the viewport's vertical centre, which only works if each beat is
+   tall enough that consecutive beats don't both sit in that band at once.
+   32vh previously gave ~270-330px across the three widths this site is
+   rendered at (844/1024/900px-tall viewports); 300px sits in the middle
+   of that range, preserving the same scroll pacing at a single fixed
+   value instead of one that moves with viewport height. See tools/shots.sh
+   and tools/check.py's viewport-height-unit check for why vh is banned
+   here specifically. */
+.beat { padding:24px 26px; border-radius:16px; min-height:300px;
+        display:flex; flex-direction:column; justify-content:center;
+        border:1px solid color-mix(in srgb, #fff 12%, transparent);
+        transition:background .4s ease, border-color .4s ease; }
+.beat h3 { font-family:var(--sans); font-size:1.12rem; font-weight:700;
+           color:color-mix(in srgb, #fff 58%, var(--ink)); margin-bottom:8px;
+           letter-spacing:-.01em; line-height:1.3; }
+.beat p { font-size:.96rem; color:color-mix(in srgb, var(--mist) 74%, var(--ink)); }
+.beat.on { background:color-mix(in srgb, var(--lime) 8%, transparent);
+           border-color:color-mix(in srgb, var(--lime) 46%, transparent); }
+.beat.on h3 { color:#fff; }
+.beat.on p { color:var(--mist); }
+@media (prefers-reduced-motion: reduce) {
+  .sticky-device { position:relative; top:0; }
+  .beat { min-height:0; }
+  .beat h3 { color:#fff; }
+  .beat p { color:var(--mist); }
+}
+
+/* ---------- season ---------- */
+.season-grid { display:grid; grid-template-columns:1fr 1fr;
+               gap:clamp(28px,5vw,56px); align-items:center; }
+@media (max-width:860px) { .season-grid { grid-template-columns:1fr; } }
+.season-art { display:flex; gap:20px; align-items:center; }
+.season-art .frame { width:44%; flex:none; }
+/* Same trap as .hero-stage img / .step img above: the img width/height HTML
+   attributes become literal CSS height hints. Constraining width alone
+   (via .frame's 44% + the global img{max-width:100%}) leaves height pinned
+   to the unscaled attribute value instead of the intrinsic ratio, squishing
+   the screenshot horizontally. height:auto forces the ratio-correct scale. */
+.season-art .frame img { height:auto; }
+.trend-card { flex:1; }
+.trend-card .hd { font-size:.74rem; font-weight:700; letter-spacing:.13em;
+                  text-transform:uppercase; color:var(--ink-2);
+                  margin-bottom:10px; }
+.trend-card .ft { font-size:.78rem; margin-top:8px; color:var(--ink-2); }
+.stat-row { display:flex; gap:26px; flex-wrap:wrap; margin-top:24px;
+            padding-top:20px; border-top:1px solid var(--rule); }
+.stat-row div b { display:block; font-family:var(--num); font-weight:800;
+                  font-size:1.7rem; line-height:1; color:var(--court-dk);
+                  font-variant-numeric:tabular-nums; }
+.stat-row div span { font-size:.74rem; font-weight:600; letter-spacing:.11em;
+                     text-transform:uppercase; color:var(--ink-2); }
+
+/* ---------- swings ---------- */
+.swing-grid { display:grid; grid-template-columns:1.1fr .9fr;
+              gap:clamp(28px,5vw,56px); align-items:center; }
+@media (max-width:860px) { .swing-grid { grid-template-columns:1fr; } }
+.trace-card .hd { display:flex; justify-content:space-between; align-items:baseline;
+                  margin-bottom:10px; }
+.trace-card .hd span { font-size:.74rem; font-weight:700; letter-spacing:.13em;
+                       text-transform:uppercase; color:var(--ink-2); }
+.trace-card .hd b { font-family:var(--num); font-weight:800; font-size:1.5rem;
+                    font-variant-numeric:tabular-nums; }
+.trace-card .ft { font-family:var(--mono); font-size:.75rem; margin-top:10px;
+                  color:var(--ink-2); }
+.trace-path { stroke:var(--court); stroke-dasharray:1400; stroke-dashoffset:1400; }
+.trace-path.draw { animation:trace-draw 2.1s ease-out forwards; }
+@keyframes trace-draw { to { stroke-dashoffset:0; } }
+.limits { margin-top:22px; }
+.limits li { list-style:none; font-size:.94rem; line-height:1.65; padding-left:24px;
+             position:relative; margin-bottom:8px;
+             color:color-mix(in srgb, var(--ink) 70%, var(--paper)); }
+.limits li::before { content:""; position:absolute; left:0; top:.62em; width:12px;
+                     height:2px; background:var(--court); }
+
+/* ---------- pricing ---------- */
+.price-grid { display:grid; grid-template-columns:.85fr 1.15fr;
+              gap:clamp(28px,5vw,52px); align-items:center; }
+@media (max-width:860px) { .price-grid { grid-template-columns:1fr; } }
+.plans { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+@media (max-width:620px) { .plans { grid-template-columns:1fr; } }
+.plan { border:1px solid var(--rule); border-radius:16px; padding:22px 24px;
+        background:#fff; }
+.plan h3 { font-family:var(--num); font-weight:800; font-size:1.25rem;
+           letter-spacing:-.01em; margin-bottom:4px; }
+.plan .price { font-size:.92rem; font-weight:600; color:var(--court-dk);
+               margin-bottom:14px; }
+.plan ul { list-style:none; }
+.plan li { font-size:.92rem; line-height:1.85; padding-left:20px; position:relative;
+           color:color-mix(in srgb, var(--ink) 68%, var(--paper)); }
+.plan li::before { content:"✓"; position:absolute; left:0; color:var(--court);
+                   font-weight:800; }
+.plan-pro { background:var(--ink); border-color:var(--lime); }
+.plan-pro h3 { color:var(--lime); }
+.plan-pro .price { color:#fff; }
+.plan-pro li { color:var(--mist); }
+.plan-pro li::before { color:var(--lime); }
+.plan-note { margin-top:16px; padding-top:14px;
+             border-top:1px solid color-mix(in srgb,#fff 15%,transparent);
+             font-size:.84rem; color:var(--mist); line-height:1.6; }
+
+/* ---------- privacy ---------- */
+.privacy-sec { background:var(--ink); color:#fff; text-align:center; }
+.privacy-sec h2 { color:#fff; } .privacy-sec h2 em { color:var(--lime); }
+.privacy-sec .eyebrow { color:var(--lime); justify-content:center; }
+.privacy-sec .eyebrow::before { background:var(--lime); }
+.privacy-sec .lede { color:var(--mist); margin:0 auto; }
+.pill-row { display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+            margin-top:28px; }
+.pill-row span { border:1px solid color-mix(in srgb,#fff 18%,transparent);
+                 border-radius:999px; padding:9px 16px; font-size:.86rem;
+                 font-weight:600; color:var(--mist); }
+.pill-row span.hi { background:var(--lime); color:var(--ink); border-color:var(--lime); }
+
+/* ---------- compare teaser ---------- */
+.compare-teaser { display:grid; grid-template-columns:1fr 1.1fr auto;
+                  gap:clamp(20px,4vw,40px); align-items:center; }
+@media (max-width:860px) { .compare-teaser { grid-template-columns:1fr; } }
+.vs { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:520px) { .vs { grid-template-columns:1fr; } }
+.vs > div { border:1px solid var(--rule); border-radius:14px; padding:16px 18px;
+            background:#fff; }
+.vs > div.mine { border:2px solid var(--court);
+                 background:color-mix(in srgb, var(--court) 5%, #fff); }
+/* R18: the brief's ad-hoc color-mix(in srgb, var(--ink) 46%, var(--paper))
+   computes to ~3.16:1 against --paper, below WCAG AA's 4.5:1 text floor with
+   no exemption available for this label size/weight. --ink-2 (60% ink,
+   ~4.99:1, defined once in the palette block above) is the floor for any
+   ink/paper text mix site-wide -- never write an ad-hoc mix below 60% here. */
+.vs h3 { font-family:var(--sans); font-size:.76rem; font-weight:700;
+         letter-spacing:.13em; text-transform:uppercase; margin-bottom:8px;
+         color:var(--ink-2); }
+.vs .mine h3 { color:var(--court-dk); }
+.vs p { font-size:.92rem; line-height:1.6;
+        color:color-mix(in srgb, var(--ink) 70%, var(--paper)); }
+
+/* ---------- faq ---------- */
+.faq-list { display:grid; grid-template-columns:1fr 1fr; gap:0 clamp(28px,5vw,52px); }
+@media (max-width:760px) { .faq-list { grid-template-columns:1fr; } }
+.faq-list details { border-bottom:1px solid var(--rule); padding:18px 0; }
+.faq-list summary { font-weight:600; font-size:1.02rem; cursor:pointer;
+                    list-style:none; display:flex; justify-content:space-between;
+                    gap:16px; align-items:baseline; }
+.faq-list summary::-webkit-details-marker { display:none; }
+.faq-list summary::after { content:"+"; color:var(--court-dk); font-weight:700;
+                           font-size:1.2rem; flex:none; }
+.faq-list details[open] summary::after { content:"–"; }
+.faq-list p { margin-top:10px; font-size:.94rem; line-height:1.7;
+              color:color-mix(in srgb, var(--ink) 70%, var(--paper)); }
+
+/* ---------- final cta ---------- */
+.cta-final { position:relative; overflow:hidden; text-align:center; }
+.cta-final .wrap { position:relative; z-index:5; }
+.cta-final .btn { margin-top:24px; }
+
+/* ---------- long-form prose (privacy policy) ----------
+   Scoped under .prose rather than bare `main p` / `main h2` selectors:
+   every page on the site shares one stylesheet, so an unscoped rule would
+   reach the other four pages too. `.prose` is applied only to the policy's
+   wrapper div, so it cannot leak. */
+.prose h1 { font-size:clamp(2rem,1.6rem + 1.6vw,2.75rem); margin-bottom:6px; }
+.prose .updated { color:var(--ink-2); font-size:.92rem; margin-bottom:28px; }
+.prose .tldr {
+  border-left:3px solid var(--court-dk); padding:16px 20px; margin:28px 0;
+  background:color-mix(in srgb, var(--court) 8%, var(--paper));
+  border-radius:0 12px 12px 0;
+}
+.prose .tldr strong { color:var(--court-dk); }
+.prose h2 { margin-top:40px; }
+.prose h2 + p, .prose p + p { margin-top:14px; }
+.prose p {
+  font-size:1rem; line-height:1.75;
+  color:color-mix(in srgb, var(--ink) 78%, var(--paper));
+}
+.prose ul { margin:14px 0 14px 22px; }
+.prose li { margin-bottom:6px; }
+.prose a { border-bottom:2px solid var(--lime); }
